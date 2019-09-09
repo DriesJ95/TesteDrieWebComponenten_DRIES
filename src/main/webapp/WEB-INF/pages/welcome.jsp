@@ -12,8 +12,8 @@
 </head>
 <body>
 <h1>Welcome ${login}!</h1>
-<form method="post" action="logout">
-<p>Would you like to log out?<input type="submit" name="logout" value="Log out"></p>
+<form method="post" action="testdrie">
+<p>Would you like to log out? <input type="submit" name="log" value="log out"></p>
 </form>
 </body>
 </html>

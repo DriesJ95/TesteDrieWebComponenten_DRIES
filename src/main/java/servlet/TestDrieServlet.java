@@ -25,8 +25,17 @@ public class TestDrieServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         String username = req.getParameter("username");
-        session.setAttribute("login",username);
-        resp.sendRedirect("");
+        String action = req.getParameter("log");
+        switch (action){
+            case "log out":
+                req.getSession().invalidate();
+                resp.sendRedirect("");
+                break;
+            case "log in":
+                session.setAttribute("login", username);
+                resp.sendRedirect("");
+                break;
+        }
 
     }
 }
