@@ -16,7 +16,7 @@ public class TestDrieServlet extends HttpServlet {
         if (req.getSession().isNew()){
             req.getSession().setAttribute("login","Guest");
             req.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(req,resp);
-        } else if (req.getSession().getAttribute("login") == "Guest, gelieve een geldige naam in te voeren !") {
+        } else if (req.getSession().getAttribute("login").equals("Guest, gelieve een geldige naam in te voeren !")) {
             req.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(req,resp);
         } else {
             req.getRequestDispatcher("/WEB-INF/pages/welcome.jsp").forward(req, resp);
@@ -35,7 +35,7 @@ public class TestDrieServlet extends HttpServlet {
                 resp.sendRedirect("");
                 break;
             case "log in":
-                if (username != ""){
+                if (!username.equals("")){
                     session.setAttribute("login", username);
                     resp.sendRedirect("");
                 }else{
