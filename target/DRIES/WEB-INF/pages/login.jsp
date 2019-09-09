@@ -11,10 +11,10 @@
     <title>Login</title>
 </head>
 <body>
-<h1>Hello Guest</h1>
+<h1>Hello ${login}</h1>
 <form method="post" action="testdrie">
 <h1>Enter a name below to log on</h1>
-    <p><input type="text" name="username" required><input type="submit" name="log" value="log in"></p>
+    <p><input type="text" name="username"><input type="submit" name="log" value="log in"></p>
 </form>
 
 </body>

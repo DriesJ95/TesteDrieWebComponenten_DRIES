@@ -14,6 +14,9 @@ public class TestDrieServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (req.getSession().isNew()){
+            req.getSession().setAttribute("login","Guest");
+            req.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(req,resp);
+        } else if (req.getSession().getAttribute("login") == "Guest, gelieve een geldige naam in te voeren !") {
             req.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(req,resp);
         } else {
             req.getRequestDispatcher("/WEB-INF/pages/welcome.jsp").forward(req, resp);
@@ -32,8 +35,13 @@ public class TestDrieServlet extends HttpServlet {
                 resp.sendRedirect("");
                 break;
             case "log in":
-                session.setAttribute("login", username);
-                resp.sendRedirect("");
+                if (username != ""){
+                    session.setAttribute("login", username);
+                    resp.sendRedirect("");
+                }else{
+                    session.setAttribute("login", "Guest, gelieve een geldige naam in te voeren !");
+                    resp.sendRedirect("");
+                }
                 break;
         }
 
