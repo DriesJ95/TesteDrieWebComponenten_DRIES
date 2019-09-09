@@ -31,7 +31,7 @@ public class TestDrieServlet extends HttpServlet {
         String action = req.getParameter("log");
         switch (action){
             case "log out":
-                req.getSession().invalidate();
+                session.invalidate();
                 resp.sendRedirect("");
                 break;
             case "log in":
