@@ -13,6 +13,7 @@ public class TestDrieServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println(resp.getClass());
         if (req.getSession().isNew()){
             req.getSession().setAttribute("login","Guest");
             req.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(req,resp);
@@ -35,6 +36,8 @@ public class TestDrieServlet extends HttpServlet {
                 resp.sendRedirect("");
                 break;
             case "log in":
+                //sendRedirects naar "" kunnen soms onverwacht gedrag veroorzaken: in chrome bracht me dit naar een lege pagina in IExplorer naar een error page
+                //geef voor de duidelijkheid het pad van je servlet mee naar waar je redirect
                 if (!username.equals("")){
                     session.setAttribute("login", username);
                     resp.sendRedirect("");
